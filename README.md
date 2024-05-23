@@ -3,7 +3,7 @@ A c# implementation of the SimpleFreeLookCamera4 found in the AssetStore:
  
 A simple 3D 100-line free-look camera for Godot 4.0 that mimics the functionality of the editor's camera for in-game use.
 
-Ported from [Richardhyy's Godot 4.x version](https://github.com/richardhyy/simple-free-look-camera-4)
+Ported from [Richardhyy's Godot 4.x version](https://github.com/richardhyy/simple-free-look-camera-4).
 who ported from [Adamviola's Godot 3.2 version](https://github.com/adamviola/simple-free-look-camera).
 
 ## Usage
