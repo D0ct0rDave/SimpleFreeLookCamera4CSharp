@@ -3,75 +3,75 @@ using System;
 using Godot;
 
 partial class FreeLookCamera : FreeLookCameraBase
-{	
-	public bool Enabled
-	{
-		set
-		{
-			m_enabled = value;
-			if (m_enabled)
-			{
-				// save current active camera
-				m_previousCamera = GetViewport().GetCamera3D();
-				m_previousMouseMode = Input.MouseMode;
+{   
+    public bool Enabled
+    {
+        set
+        {
+            _enabled = value;
+            if (_enabled)
+            {
+                // save current active camera
+                _previousCamera = GetViewport().GetCamera3D();
+                _previousMouseMode = Input.MouseMode;
 
-				if (m_previousCamera != null)
-				{
-					// Copy current camera properties into this camera
-					GlobalTransform = m_previousCamera.GlobalTransform;
-					Fov = m_previousCamera.Fov;
-					Near = m_previousCamera.Near;
-					Far = m_previousCamera.Far;
-					Projection = m_previousCamera.Projection;
+                if (_previousCamera != null)
+                {
+                    // Copy current camera properties into this camera
+                    GlobalTransform = _previousCamera.GlobalTransform;
+                    Fov = _previousCamera.Fov;
+                    Near = _previousCamera.Near;
+                    Far = _previousCamera.Far;
+                    Projection = _previousCamera.Projection;
 
-					// disable current camera
-					m_previousCamera.Current = false;
-				}
+                    // disable current camera
+                    _previousCamera.Current = false;
+                }
 
-				// Enable free look camera and set as the current one
-				Current = true;
-			}
-			else
-			{
-				
-				Current = false;
-				if (m_previousCamera != null)
-				{
-					m_previousCamera.Current = true;				
-					Input.MouseMode = m_previousMouseMode;
-				}
-			}
-		}
+                // Enable free look camera and set as the current one
+                Current = true;
+            }
+            else
+            {
+                
+                Current = false;
+                if (_previousCamera != null)
+                {
+                    _previousCamera.Current = true;                
+                    Input.MouseMode = _previousMouseMode;
+                }
+            }
+        }
 
-		get
-		{
-			return m_enabled;
-		}
-	}
+        get
+        {
+            return _enabled;
+        }
+    }
 
-	private bool m_enabled = false;
-	private Camera3D m_previousCamera;
-	private Input.MouseModeEnum m_previousMouseMode;
+    private bool _enabled = false;
+    private Camera3D _previousCamera;
+    private Input.MouseModeEnum _previousMouseMode;
 
-	public override void _Ready()
-	{
-		Current = false;
-	}
-	public override void _Input(InputEvent _event)
-	{
-		if (! Enabled)
-		{
-			return;
-		}
-		base._Input(_event);
-	}
-	public override void _Process(double delta)
-	{
-		if (! Enabled)
-		{
-			return;
-		}
+    public override void _Ready()
+    {
+        Current = false;
+    }
+    public override void _Input(InputEvent _event)
+    {
+        if (! Enabled)
+        {
+            return;
+        }
+        base._Input(_event);
+    }
+    public override void _Process(double delta)
+    {
+        if (! Enabled)
+        {
+            return;
+        }
 
-		base._Process(delta);
-	}
+        base._Process(delta);
+    }
 }
