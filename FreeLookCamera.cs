@@ -33,7 +33,6 @@ partial class FreeLookCamera : FreeLookCameraBase
             }
             else
             {
-                
                 Current = false;
                 if (_previousCamera != null)
                 {
